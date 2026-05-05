@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Casillias Gandouf - Barber Booking</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <span>Casillias Gandouf</span>
+        <p>Elite Barber Studio</p>
+      </div>
+      <div class="contact-block">
+        <span>Book by WhatsApp</span>
+        <a href="https://wa.me/212659183528" target="_blank" rel="noopener noreferrer">+212 659 183 528</a>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="hero" aria-label="Barber appointment booking">
+        <div class="hero__content">
+          <p class="eyebrow">Men's Grooming Studio</p>
+          <h1>Professional barber appointments in ksar elkebir</h1>
+          <p class="intro">
+            Fast booking for haircuts, fades, beard trims and styling. Send your request directly to WhatsApp and lock in your slot.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-btn" href="#bookingForm">Book Now</a>
+            <a class="secondary-link" href="https://wa.me/212659183528" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+          </div>
+          <div class="quick-info" aria-label="Quick services">
+            <span>Haircut</span>
+            <span>Beard</span>
+            <span>Fade</span>
+            <span>Styling</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="booking-panel" aria-label="Appointment booking form">
+        <div class="panel-heading">
+          <p>Book an appointment</p>
+          <h2>Client details</h2>
+        </div>
+
+        <form id="bookingForm">
+          <div class="field">
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" placeholder="Ex: Ahmed El Idrissi" required />
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input id="phone" name="phone" type="tel" placeholder="Ex: 0659183528" required />
+          </div>
+
+          <div class="field">
+            <label for="service">Service</label>
+            <select id="service" name="service" required>
+              <option value="">Select a service</option>
+              <option>Haircut</option>
+              <option>Haircut + Beard</option>
+              <option>Beard trim</option>
+              <option>Hair treatment</option>
+              <option>Fade</option>
+            </select>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="date">Date</label>
+              <input id="date" name="date" type="date" required />
+            </div>
+
+            <div class="field time-field-group">
+              <label>Time (24-hour)</label>
+              <div class="time-fields">
+                <div class="field-inline">
+                  <input id="timeHour" name="timeHour" type="number" min="0" max="23" placeholder="13" required />
+                </div>
+                <div class="field-inline">
+                  <input id="timeMinute" name="timeMinute" type="number" min="0" max="59" placeholder="14" required />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="note">Notes</label>
+            <textarea
+              id="note"
+              name="note"
+              rows="4"
+              placeholder="Ex: I would like a fade with beard trim..."
+            ></textarea>
+          </div>
+
+          <button type="submit">Send on WhatsApp</button>
+          <p id="formStatus" class="status" role="status"></p>
+        </form>
+      </section>
+      <section class="location-section">
+  <div class="location-box">
+    <div class="map-wrapper">
+      <iframe src="https://www.google.com/maps?q=34.99752083174411,-5.908427099778381&output=embed"
+        allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="loc-body">
+      <p class="location-eyebrow">find us</p>
+      <h2>Casillias Gandouf</h2>
+      <p>Ksar El Kebir — Café Oslo</p>
+      <div class="location-actions">
+        <a class="btn-directions"
+           href="https://www.google.com/maps?q=34.99752083174411,-5.908427099778381"
+           target="_blank">🗺 Google Maps</a>
+        <a class="btn-waze"
+           href="https://waze.com/ul?ll=34.99752083174411,-5.908427099778381&navigate=yes"
+           target="_blank">⏱ Waze</a>
+      </div>
+    </div>
+  </div>
+</section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
