@@ -146,11 +146,10 @@ form.addEventListener('submit', (event) => {
           `Notes: ${note}`,
         ].join('\n');
 
-        const whatsappUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
         setStatus('Slot reserved. Opening WhatsApp in a new tab...', false);
-        
-        // ✅ FIX: Use window.open() instead of window.location.href
-        window.open(whatsappUrl, '_blank');
+        window.location.href = whatsappUrl;
       });
     });
   }).catch((error) => {
