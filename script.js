@@ -100,33 +100,31 @@ form.addEventListener('submit', (event) => {
       return;
     }
 
-   // حفظ مباشرة بلا transaction
-slotRef.set(true);
+    slotRef.transaction((currentValue) => {
+      if (currentValue === null) {
+        return true;
+      }
+      return undefined;
+    }, (error, committed) => {
+      if (error) {
+        setStatus('Database error. Please try again.', true);
+        return;
+      }
 
-appointmentRef.set({
-  name,
-  phone,
-  service,
-  date,
-  time,
-  note,
-  reservedAt: Date.now(),
-});
+      if (!committed) {
+        setStatus('This time slot is already reserved. Please choose another time.', true);
+        return;
+      }
 
-const message = [
-  'New barber appointment request:',
-  `Name: ${name}`,
-  `Phone: ${phone}`,
-  `Service: ${service}`,
-  `Date: ${date}`,
-  `Time: ${time}`,
-  `Notes: ${note}`,
-].join('\n');
-
-const whatsappUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
-
-setStatus('Opening WhatsApp...', false);
-window.location.href = whatsappUrl;
+      appointmentRef.set({
+        name,
+        phone,
+        service,
+        date,
+        time,
+        note,
+        reservedAt: Date.now(),
+      });
 
       nextSlotRef.transaction((currentValue) => {
         if (currentValue === null) {
@@ -150,7 +148,9 @@ window.location.href = whatsappUrl;
 
         const whatsappUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
         setStatus('Slot reserved. Opening WhatsApp in a new tab...', false);
-        window.location.href = whatsappUrl;
+        
+        // ✅ FIX: Use window.open() instead of window.location.href
+        window.open(whatsappUrl, '_blank');
       });
     });
   }).catch((error) => {
