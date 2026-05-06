@@ -148,7 +148,7 @@ form.addEventListener('submit', (event) => {
 
         const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
         setStatus('Slot reserved. Opening WhatsApp in a new tab...', false);
-        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        window.location.href = whatsappUrl;
       });
     });
   }).catch((error) => {
