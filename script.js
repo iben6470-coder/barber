@@ -146,8 +146,7 @@ form.addEventListener('submit', (event) => {
           `Notes: ${note}`,
         ].join('\n');
 
-        const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-        setStatus('Slot reserved. Opening WhatsApp in a new tab...', false);
+const whatsappUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;        setStatus('Slot reserved. Opening WhatsApp in a new tab...', false);
         window.location.href = whatsappUrl;
       });
     });
